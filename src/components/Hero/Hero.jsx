@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
-import { IoIosArrowRoundForward } from "react-icons/io";
-import Blob from "../../assets/blob.svg";
-import HeroPng from "../../assets/hero.png";
 import { motion } from "framer-motion";
+import { db } from "../../firebase";
+import { collection, addDoc } from "firebase/firestore";
 
-// FadeUp Animation for Motion elements
+// Define the FadeUp animation
 export const FadeUp = (delay) => {
   return {
     initial: {
@@ -27,62 +26,125 @@ export const FadeUp = (delay) => {
 };
 
 const Hero = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    mobile: "",
+    city: "",
+  });
+
+  // Handle input field changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Simple validation
+    if (!formData.fullName || !formData.email || !formData.mobile || !formData.city) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    try {
+      // Add the form data to Firestore
+      await addDoc(collection(db, "consultations"), {
+        ...formData,
+        createdAt: new Date(),
+      });
+
+      // Reset the form after submission
+      setFormData({
+        fullName: "",
+        email: "",
+        mobile: "",
+        city: "",
+      });
+
+      alert("Consultation request submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting form: ", error);
+      alert("There was an error submitting the form.");
+    }
+  };
+
   return (
-    <section className="bg-white overflow-hidden relative"> 
-      <Navbar /> 
-      <div className="container grid grid-cols-1 md:grid-cols-2 min-h-[650px]">
-      
-        <div className="flex flex-col justify-center py-14 md:py-0 relative z-20">
-          <div className="text-center md:text-left space-y-10 lg:max-w-[400px]">
-            <motion.h1
-              variants={FadeUp(0.6)}
-              initial="initial"
-              animate="animate"
-              className="text-3xl lg:text-5xl font-bold !leading-snug text-blue-600" 
-            >
-              Find the Perfect <span className="text-yellow-400">Room</span> with RoomDeekho
-            </motion.h1>
-            <motion.p
-              variants={FadeUp(0.7)}
-              initial="initial"
-              animate="animate"
-              className="text-md lg:text-lg text-gray-600" 
-            >
-              We help students and professionals find affordable rooms and PGs across the city. Start your search now to find your ideal space!
-            </motion.p>
-            <motion.div
-              variants={FadeUp(0.8)}
-              initial="initial"
-              animate="animate"
-              className="flex justify-center md:justify-start"
-            >
-              <button className="primary-btn flex items-center gap-2 group bg-yellow-500 text-white px-6 py-3 rounded-full hover:bg-yellow-400 transition duration-300"> {/* Yellow button */}
-                Get Started
-                <IoIosArrowRoundForward className="text-xl group-hover:translate-x-2 group-hover:-rotate-45 duration-300" />
-              </button>
-            </motion.div>
-          </div>
+    <section
+      className="bg-cover bg-center min-h-screen relative"
+      style={{
+        backgroundImage: `url('/young.svg')`,
+      }}
+    >
+      <Navbar />
+
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 min-h-[650px] py-14 relative z-10">
+        <div className="flex flex-col justify-center text-white space-y-4 md:text-left px-4">
+          <motion.h1
+            variants={FadeUp(0.6)} // Add animation delay
+            initial="initial"
+            animate="animate"
+            className="text-6xl font-bold"
+          >
+            <span className="block">Consultation,</span>
+            <span className="block">Design</span>
+            <span className="block">& Marketing</span>
+          </motion.h1>
         </div>
 
-        {/* Hero Image */}
-        <div className="flex justify-center items-center">
-          <motion.img
-            initial={{ x: 50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeInOut" }}
-            src={HeroPng}
-            alt="Find Your Room"
-            className="w-[400px] xl:w-[600px] relative z-10 drop-shadow"
-          />
-          <motion.img
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeInOut" }}
-            src={Blob}
-            alt="Decorative Background"
-            className="absolute -bottom-32 w-[800px] md:w-[1500px] z-[1] hidden md:block"
-          />
-        </div>
+        <motion.div
+          variants={FadeUp(0.8)} // Add animation delay
+          initial="initial"
+          animate="animate"
+          className="bg-blue-600/50 backdrop-blur-sm rounded-lg p-8 mx-4 md:mx-0 w-full h-full max-w-[500px] max-h-[500px] flex flex-col justify-between border-2 border-white"
+        >
+          <h2 className="text-2xl font-bold text-white mb-6">Get a Free Consultation</h2>
+          <form className="space-y-4 flex-1 overflow-auto" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleInputChange}
+              placeholder="Full Name"
+              className="w-full p-3 rounded-md focus:outline-none placeholder-gray-300 bg-white text-gray-900"
+            />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Enter Email Address"
+              className="w-full p-3 rounded-md focus:outline-none placeholder-gray-300 bg-white text-gray-900"
+            />
+            <input
+              type="tel"
+              name="mobile"
+              value={formData.mobile}
+              onChange={handleInputChange}
+              placeholder="Mobile Number"
+              className="w-full p-3 rounded-md focus:outline-none placeholder-gray-300 bg-white text-gray-900"
+            />
+            <input
+              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleInputChange}
+              placeholder="Area/City"
+              className="w-full p-3 rounded-md focus:outline-none placeholder-gray-300 bg-white text-gray-900"
+            />
+            <button
+              type="submit"
+              className="w-full py-3 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-600 transition"
+            >
+              Get Quick Quote
+            </button>
+          </form>
+        </motion.div>
       </div>
     </section>
   );

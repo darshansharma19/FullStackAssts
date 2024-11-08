@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { motion } from "framer-motion";
-import logo from '../../assets/logo.jpeg';
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
-  { id: 2, title: "Find Rooms", path: "/find-room" }, 
-  { id: 3, title: "Roommate Match", path: "/roommate-match" },
-  { id: 4, title: "About Us", path: "/about" },
-  { id: 5, title: "Contact Us", path: "/contact" },
+  { id: 2, title: "Services", path: "/services" }, 
+  { id: 3, title: "About Projects", path: "/aboutprojects" },
+  { id: 4, title: "Testimonial", path: "/testimonial" },
+  { id: 5, title: "Contact", path: "/contact" },
 ];
 
 const Navbar = () => {
@@ -19,62 +18,63 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="relative z-20 bg-white shadow-md">
+    <nav className="relative z-20 bg-white shadow-md bg-cover bg-center"
+      style={{
+        backgroundImage: "url('/young-couple-examining-blueprints-with-real-estate-agent-while-buying-new-home-1.svg')" // path to the svg file in the public folder
+      }}
+    >
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="container py-6 flex justify-between items-center"
       >
-        {/* Logo section */}
+   
         <div className="flex items-center">
           <motion.img
-            src={logo}
-            alt="RoomDeekho Logo"
-            className="w-16 h-16 mr-3"
+            src="/logo.svg"
+            alt="Real Trust Logo"
+            className="w-15 h-16 mr-3"
             initial={{ scale: 0 }}
             animate={{ scale: 1, rotate: [0, 5, -5, 0] }}
             transition={{ duration: 0.5 }}
           />
-          <motion.h1
-            className="font-bold text-4xl text-blue-600"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0, scale: [1, 1.1, 1] }}
-            transition={{ duration: 0.5 }}
-          >
-            RoomDeekho
-          </motion.h1>
         </div>
 
-        {/* Menu section */}
+        
         <div className="hidden lg:flex gap-8 items-center">
           <ul className="flex items-center gap-8">
-            {NavbarMenu.map((menu) => (
+            {NavbarMenu.slice(0, 4).map((menu) => (
               <li key={menu.id}>
                 <a
                   href={menu.path}
-                  className="inline-block py-2 px-3 relative group"
+                  className="inline-block py-2 px-3 font-bold text-black transition duration-300 hover:font-extrabold hover:text-blue-500 hover:underline"
                 >
-                  <span className="text-blue-600 transition duration-300 group-hover:font-bold">
-                    {menu.title}
-                  </span>
-                  <span className="block h-0.5 bg-blue-600 transition-all duration-300 scale-x-0 group-hover:scale-x-100" />
+                  {menu.title}
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href={NavbarMenu[4].path}
+                className="bg-orange-500 text-white py-2 px-6 rounded-lg font-bold transition duration-300 hover:bg-orange-600"
+              >
+                {NavbarMenu[4].title}
+              </a>
+            </li>
           </ul>
 
-          {/* Sign In Dropdown */}
+       
           <div className="relative">
             <motion.button
               onClick={toggleDropdown}
               whileHover={{ scale: 1.1 }}
               className="bg-blue-500 text-white py-2 px-6 rounded-lg flex items-center hover:bg-blue-600 transition"
             >
-              Sign In
+              Sign Up
             </motion.button>
 
-            {/* Animated Dropdown */}
+         
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={isDropdownOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
@@ -84,18 +84,18 @@ const Navbar = () => {
               <ul className="py-2 text-gray-700">
                 <li>
                   <a
-                    href="/signin-owner"
+                    href="/signup-admin"
                     className="block px-4 py-2 hover:bg-blue-500 hover:text-white transition"
                   >
-                    Sign In as Property Owner
+                    Sign Up as Admin
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/signin-user"
+                    href="/signup-user"
                     className="block px-4 py-2 hover:bg-blue-500 hover:text-white transition"
                   >
-                    Sign In as User
+                    Sign Up as User
                   </a>
                 </li>
               </ul>
@@ -103,7 +103,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Hamburger menu section */}
+        
         <div className="lg:hidden">
           <IoMdMenu className="text-4xl text-blue-600" />
         </div>

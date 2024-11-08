@@ -1,59 +1,46 @@
 import React from "react";
-import { RiHome2Line } from "react-icons/ri"; // Updated for Room, PG, Hostel
-import { AiOutlineTeam } from "react-icons/ai"; // For AI Matching system
-import { FiMapPin } from "react-icons/fi"; // For Explore city
-import { BiNews } from "react-icons/bi"; // For Concerts, Events, etc.
-import { MdOutlineLocalLaundryService } from "react-icons/md"; // For Local Vendors (Cook, Laundry)
-import { MdOutlinePayment } from "react-icons/md"; // For Payment Reminder
 import { motion } from "framer-motion";
 
-// Updated Services Data with your descriptions
-const ServicesData = [
+// Example project data - Replace with actual fetched data
+const ProjectsData = [
   {
     id: 1,
-    title: "Room, PG, Hostel Finder",
-    description: "Helping students and professionals find rooms, PGs, and hostels.",
-    icon: <RiHome2Line />,
-    delay: 0.2,
+    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    name: "Project One",
+    description: "This is a description of Project One. It involves building a scalable platform.",
   },
   {
     id: 2,
-    title: "AI-based Roommate Matching",
-    description: "Find perfect roommates based on religion, nature, and other factors.",
-    icon: <AiOutlineTeam />,
-    delay: 0.3,
+    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    name: "Project Two",
+    description: "This is a description of Project Two. It includes an AI-powered system.",
   },
   {
     id: 3,
-    title: "Explore the City",
-    description: "Explore city trends and new places for newcomers.",
-    icon: <FiMapPin />,
-    delay: 0.4,
+    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    name: "Project Three",
+    description: "This is a description of Project Three. It focuses on data analysis and visualization.",
   },
   {
     id: 4,
-    title: "Events & Concert Updates",
-    description: "Stay updated with events and concerts tailored to your interests.",
-    icon: <BiNews />,
-    delay: 0.5,
+    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    name: "Project Four",
+    description: "This is a description of Project Four. It involves building a mobile app.",
   },
   {
     id: 5,
-    title: "Local Vendors Assistance",
-    description: "Connect with local vendors like cooks, laundry, and tiffin centers.",
-    icon: <MdOutlineLocalLaundryService />,
-    delay: 0.6,
+    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    name: "Project Five",
+    description: "This is a description of Project Five. It deals with cloud infrastructure management.",
   },
   {
     id: 6,
-    title: "Payment Reminder & Direct Pay",
-    description: "Pay rent directly to landlords with reminders from our platform.",
-    icon: <MdOutlinePayment />,
-    delay: 0.7,
+    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    name: "Project Six",
+    description: "This is a description of Project Six. It works on IoT-based automation systems.",
   },
 ];
 
-// Animation for sliding in from the right
 const SlideLeft = (delay) => {
   return {
     initial: {
@@ -72,26 +59,37 @@ const SlideLeft = (delay) => {
   };
 };
 
-const Services = () => {
+const Projects = () => {
   return (
-    <section className="bg-white py-16"> {/* White background */}
+    <section className="bg-white py-16">
       <div className="container">
-        <h1 className="text-4xl font-bold text-left pb-10 text-blue-600">
-          Services We Provide {/* Blue heading */}
+        {/* Heading */}
+        <h1 className="text-4xl font-bold text-center text-blue-600 mb-4">
+          Our Projects
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {ServicesData.map((service) => (
+        <p className="text-black text-center text-lg mb-12">
+          We know what buyers are looking for and suggest projects that will bring clients top dollar for the sale of their home.
+        </p>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+          {ProjectsData.map((project, index) => (
             <motion.div
-              key={service.id}
-              variants={SlideLeft(service.delay)}
+              key={project.id}
+              variants={SlideLeft(index * 0.2)}  // Delay each project
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
-              className="bg-blue-50 hover:bg-blue-100 rounded-2xl flex flex-col gap-4 items-center justify-center p-6 hover:scale-105 duration-300 shadow-lg hover:shadow-2xl transition-all" 
+              className="bg-gray-50 hover:bg-gray-100 rounded-lg flex flex-col items-center p-6 hover:scale-105 duration-300 shadow-lg hover:shadow-2xl transition-all"
             >
-              <div className="text-blue-600 text-5xl mb-4">{service.icon}</div> {/* Blue icons */}
-              <h2 className="text-xl font-semibold text-blue-700 text-center">{service.title}</h2> {/* Blue titles */}
-              <p className="text-gray-600 text-center px-3">{service.description}</p> {/* Gray descriptions */}
+              <img
+                src={project.image}
+                alt={project.name}
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <h2 className="text-xl font-semibold text-blue-700 text-center">{project.name}</h2>
+              <p className="text-gray-600 text-center px-3 mb-4">{project.description}</p>
+              <button className="text-blue-600 hover:text-blue-800 font-medium">Read More</button>
             </motion.div>
           ))}
         </div>
@@ -100,4 +98,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Projects;
