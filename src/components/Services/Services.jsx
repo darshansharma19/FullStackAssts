@@ -4,37 +4,37 @@ import { motion } from "framer-motion";
 const ProjectsData = [
   {
     id: 1,
-    image: "https://via.placeholder.com/300", 
+    image: "/pexels-brett-sayles-2881232-3.svg", 
     name: "Project One",
     description: "This is a description of Project One. It involves building a scalable platform.",
   },
   {
     id: 2,
-    image: "https://via.placeholder.com/300", 
+    image: "/pexels-brett-sayles-2881232.svg", 
     name: "Project Two",
     description: "This is a description of Project Two. It includes an AI-powered system.",
   },
   {
     id: 3,
-    image: "https://via.placeholder.com/300", 
+    image: "/pexels-fauxels-3182834.svg", 
     name: "Project Three",
     description: "This is a description of Project Three. It focuses on data analysis and visualization.",
   },
   {
     id: 4,
-    image: "https://via.placeholder.com/300", 
+    image: "/pexels-brett-sayles-2881232.svg", 
     name: "Project Four",
     description: "This is a description of Project Four. It involves mobile app development.",
   },
   {
     id: 5,
-    image: "https://via.placeholder.com/300", 
+    image: "/pexels-fauxels-3182834.svg", 
     name: "Project Five",
     description: "This is a description of Project Five. It involves e-commerce platform development.",
   },
   {
     id: 6,
-    image: "https://via.placeholder.com/300", 
+    image: "/pexels-brett-sayles-2881232-3.svg", 
     name: "Project Six",
     description: "This is a description of Project Six. It focuses on cloud computing and serverless architecture.",
   },

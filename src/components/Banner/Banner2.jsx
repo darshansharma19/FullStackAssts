@@ -6,37 +6,37 @@ const clients = [
   {
     id: 1,
     name: "John Doe",
-    image: "https://via.placeholder.com/100",  // Use actual image URL for client profile
+    image: "/Ellipse 28.svg",  
     review: "This is an amazing service, highly recommend it to anyone looking to explore Indore!",
   },
   {
     id: 2,
     name: "Jane Smith",
-    image: "https://via.placeholder.com/100",  // Use actual image URL for client profile
+    image: "/Ellipse 29.svg", 
     review: "Great experience! The blog provided helpful tips for newcomers.",
   },
   {
     id: 3,
     name: "Michael Johnson",
-    image: "https://via.placeholder.com/100",  // Use actual image URL for client profile
+    image: "/Ellipse 31.svg",  
     review: "A wonderful guide to the hidden gems of Indore. I had a great time following these tips.",
   },
   {
     id: 4,
     name: "Emily Davis",
-    image: "https://via.placeholder.com/100",  // Use actual image URL for client profile
+    image: "/Ellipse 33.svg",  
     review: "Fantastic! The food recommendations were spot on. Loved every dish I tried.",
   },
   {
     id: 5,
     name: "Chris Lee",
-    image: "https://via.placeholder.com/100",  // Use actual image URL for client profile
+    image: "/Ellipse 35.svg",  
     review: "Indore is full of surprises! This blog helped me find some great spots to visit.",
   },
   {
     id: 6,
     name: "Sarah Brown",
-    image: "https://via.placeholder.com/100",  // Use actual image URL for client profile
+    image: "/Ellipse 28.svg", 
     review: "As a student, I found the guide to Indore invaluable. It made settling in so much easier.",
   },
 ];
