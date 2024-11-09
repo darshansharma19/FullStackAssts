@@ -32,6 +32,7 @@ const Hero = () => {
     mobile: "",
     city: "",
   });
+  const [showPopup, setShowPopup] = useState(false); // State to control popup visibility
 
   // Handle input field changes
   const handleInputChange = (e) => {
@@ -67,11 +68,17 @@ const Hero = () => {
         city: "",
       });
 
-      alert("Consultation request submitted successfully!");
+      // Show the popup upon successful form submission
+      setShowPopup(true);
     } catch (error) {
       console.error("Error submitting form: ", error);
       alert("There was an error submitting the form.");
     }
+  };
+
+  // Close the popup
+  const closePopup = () => {
+    setShowPopup(false);
   };
 
   return (
@@ -146,6 +153,26 @@ const Hero = () => {
           </form>
         </motion.div>
       </div>
+
+      {/* Popup Modal */}
+      {showPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg w-[80%] max-w-md text-center">
+            <h2 className="text-2xl font-bold text-blue-600 mb-4">
+              Thank you for your submission!
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Your consultation request has been successfully submitted. We will get in touch with you shortly.
+            </p>
+            <button
+              onClick={closePopup}
+              className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
