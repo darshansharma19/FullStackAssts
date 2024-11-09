@@ -1,44 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
-const ProjectsData = [
-  {
-    id: 1,
-    image: "/pexels-brett-sayles-2881232-3.svg", 
-    name: "Project One",
-    description: "This is a description of Project One. It involves building a scalable platform.",
-  },
-  {
-    id: 2,
-    image: "/pexels-brett-sayles-2881232.svg", 
-    name: "Project Two",
-    description: "This is a description of Project Two. It includes an AI-powered system.",
-  },
-  {
-    id: 3,
-    image: "/pexels-fauxels-3182834.svg", 
-    name: "Project Three",
-    description: "This is a description of Project Three. It focuses on data analysis and visualization.",
-  },
-  {
-    id: 4,
-    image: "/pexels-brett-sayles-2881232.svg", 
-    name: "Project Four",
-    description: "This is a description of Project Four. It involves mobile app development.",
-  },
-  {
-    id: 5,
-    image: "/pexels-fauxels-3182834.svg", 
-    name: "Project Five",
-    description: "This is a description of Project Five. It involves e-commerce platform development.",
-  },
-  {
-    id: 6,
-    image: "/pexels-brett-sayles-2881232-3.svg", 
-    name: "Project Six",
-    description: "This is a description of Project Six. It focuses on cloud computing and serverless architecture.",
-  },
-];
 
 const SlideLeft = (delay) => {
   return {
@@ -59,6 +20,16 @@ const SlideLeft = (delay) => {
 };
 
 const Projects = () => {
+  const [projectsData, setProjectsData] = useState([]);
+
+  useEffect(() => {
+    // Fetch the projects data from the backend
+    fetch('http://localhost:5000/projects')  // Ensure the backend server is running
+      .then(response => response.json())
+      .then(data => setProjectsData(data))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
   return (
     <section className="bg-white py-16">
       <div className="container">
@@ -72,7 +43,7 @@ const Projects = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
-          {ProjectsData.map((project, index) => (
+          {projectsData.map((project, index) => (
             <motion.div
               key={project.id}
               variants={SlideLeft(index * 0.2)}  // Delay each project

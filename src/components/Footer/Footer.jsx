@@ -1,74 +1,66 @@
 import React from "react";
-import { FaInstagram, FaWhatsapp, FaYoutube, FaTwitter, FaLinkedin } from "react-icons/fa";
-import { TbWorldWww } from "react-icons/tb";
+import { FaInstagram, FaWhatsapp, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className="relative py-28 bg-white">
-      {/* Background image with darker overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-70"
-        style={{ backgroundImage: "url('/Rectangle.svg')" }}
-      ></div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        className="container relative z-10"
-      >
-        {/* Section with text and button */}
-        <div className="text-white py-10 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Learn more about our listing process, as well as our
-            <br />
-            additional straight and design work.
-          </h2>
-          <button className="bg-white text-blue-600 font-semibold py-2 px-4 rounded-lg hover:bg-gray-200 transition-all duration-300">
-            Learn More
-          </button>
-        </div>
-
-        {/* Section with blue background and links */}
-        <div className="bg-blue-600 text-white py-5 mt-12">
-          <div className="flex justify-between items-center container">
-            <div className="space-x-10 flex">
-              <h3 className="text-xl font-bold">Home</h3>
-              <h3 className="text-xl font-bold">Services</h3>
-              <h3 className="text-xl font-bold">Projects</h3>
-              <h3 className="text-xl font-bold">Testimonial</h3>
-              <h3 className="text-xl font-bold">Contact</h3>
-            </div>
-            <div className="space-y-4">
-              <h1 className="text-2xl font-bold">Stay Connected</h1>
-              <div className="flex items-center">
-                <input
-                  type="text"
-                  placeholder="Enter your email"
-                  className="p-3 rounded-s-xl bg-white w-full py-4 focus:ring-0 focus:outline-none placeholder:text-gray-500"
-                />
-                <button className="bg-yellow-500 text-white font-semibold py-4 px-6 rounded-e-xl hover:bg-yellow-600 transition-all duration-300">
-                  Subscribe
-                </button>
-              </div>
-            </div>
+    <footer className="relative mt-28">
+      {/* Background section */}
+      <div className="relative">
+        <div className="absolute w-full h-full bg-black bg-opacity-50">
+          <div className="w-[600px] mx-auto text-center text-2xl font-bold text-white mt-24">
+            Learn more about our listing process, as well as our additional
+            staging and design work.
+          </div>
+          <div className="text-center mt-16">
+            <button className="bg-white text-sky-500 rounded-lg mx-auto px-28 py-2 font-bold border-[1px] border-solid border-sky-500">
+              Learn More
+            </button>
           </div>
         </div>
+        <img loading="lazy" className="" src="/Rectangle.svg" />
+      </div>
 
-      </motion.div>
+      {/* Links section */}
+      <div className="w-full h-[100px] bg-blue-500 text-white flex justify-between px-28 items-center">
+        <div>Home</div>
+        <div>Services</div>
+        <div>Projects</div>
+        <div>Testimonials</div>
+        <div>Contact</div>
+        <div className="ml-32">Subscribe Us</div>
+        <form onSubmit={(e) => e.preventDefault()} className="border-2 border-white rounded-md">
+          <input
+            name="email"
+            placeholder="Enter Email Address"
+            className="placeholder-white outline-none text-white bg-inherit px-8"
+          />
+          <span>
+            <button className="bg-white text-sky-500 h-full p-2 px-8" type="submit">
+              Subscribe
+            </button>
+          </span>
+        </form>
+      </div>
 
-      {/* Footer bottom section with darker black background */}
-      <div className="bg-black text-white py-6">
-        <div className="container flex justify-between items-center">
-          <img src="/logo.svg" alt="Logo" className="w-32" />
-          <div className="flex items-center space-x-4">
-            <span className="text-sm">+1 (123) 456-7890</span>
-            <div className="flex space-x-3">
-              <FaInstagram className="text-white" />
-              <FaWhatsapp className="text-white" />
-              <FaTwitter className="text-white" />
-              <FaLinkedin className="text-white" />
-            </div>
+      {/* Bottom footer section */}
+      <div className="w-full h-[100px] bg-[#21202e] flex justify-between px-28 text-white items-center">
+        <div>All Rights Reserved 2024</div>
+        <div>
+          <img loading="lazy" src="/logo.svg" className="h-[40px]" alt="Logo" />
+        </div>
+        <div className="flex gap-2">
+          <div className="rounded-full p-1 bg-white">
+            <FaInstagram className="text-sky-500" />
+          </div>
+          <div className="rounded-full p-1 bg-white">
+            <FaWhatsapp className="text-sky-500" />
+          </div>
+          <div className="rounded-full p-1 bg-white">
+            <FaTwitter className="text-sky-500" />
+          </div>
+          <div className="rounded-full p-1 bg-white">
+            <FaLinkedin className="text-sky-500" />
           </div>
         </div>
       </div>
