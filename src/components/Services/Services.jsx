@@ -1,43 +1,42 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// Example project data - Replace with actual fetched data
 const ProjectsData = [
   {
     id: 1,
-    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    image: "https://via.placeholder.com/300", 
     name: "Project One",
     description: "This is a description of Project One. It involves building a scalable platform.",
   },
   {
     id: 2,
-    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    image: "https://via.placeholder.com/300", 
     name: "Project Two",
     description: "This is a description of Project Two. It includes an AI-powered system.",
   },
   {
     id: 3,
-    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    image: "https://via.placeholder.com/300", 
     name: "Project Three",
     description: "This is a description of Project Three. It focuses on data analysis and visualization.",
   },
   {
     id: 4,
-    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    image: "https://via.placeholder.com/300", 
     name: "Project Four",
-    description: "This is a description of Project Four. It involves building a mobile app.",
+    description: "This is a description of Project Four. It involves mobile app development.",
   },
   {
     id: 5,
-    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    image: "https://via.placeholder.com/300", 
     name: "Project Five",
-    description: "This is a description of Project Five. It deals with cloud infrastructure management.",
+    description: "This is a description of Project Five. It involves e-commerce platform development.",
   },
   {
     id: 6,
-    image: "https://via.placeholder.com/300", // Replace with actual project image URL
+    image: "https://via.placeholder.com/300", 
     name: "Project Six",
-    description: "This is a description of Project Six. It works on IoT-based automation systems.",
+    description: "This is a description of Project Six. It focuses on cloud computing and serverless architecture.",
   },
 ];
 
@@ -72,7 +71,7 @@ const Projects = () => {
         </p>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
           {ProjectsData.map((project, index) => (
             <motion.div
               key={project.id}
@@ -89,7 +88,10 @@ const Projects = () => {
               />
               <h2 className="text-xl font-semibold text-blue-700 text-center">{project.name}</h2>
               <p className="text-gray-600 text-center px-3 mb-4">{project.description}</p>
-              <button className="text-blue-600 hover:text-blue-800 font-medium">Read More</button>
+              {/* Updated button styling */}
+              <button className="w-full py-2 px-4 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600 transition-all duration-300 text-center">
+                Read More
+              </button>
             </motion.div>
           ))}
         </div>
