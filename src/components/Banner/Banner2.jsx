@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// Sample Client Data
 const clients = [
   {
     id: 1,
@@ -33,15 +32,9 @@ const clients = [
     image: "/Ellipse 35.svg",  
     review: "Indore is full of surprises! This blog helped me find some great spots to visit.",
   },
-  {
-    id: 6,
-    name: "Sarah Brown",
-    image: "/Ellipse 28.svg", 
-    review: "As a student, I found the guide to Indore invaluable. It made settling in so much easier.",
-  },
 ];
 
-// Animation Variants
+
 const fadeIn = (delay) => ({
   initial: { opacity: 0, y: 30 },
   animate: {
@@ -51,7 +44,7 @@ const fadeIn = (delay) => ({
   },
 });
 
-const BlogPage = () => {
+const client = () => {
   return (
     <section className="bg-white">
       <div className="container py-14 md:py-24">
@@ -60,7 +53,7 @@ const BlogPage = () => {
           <h2 className="text-3xl font-bold text-center text-blue-600 mb-10">
             Happy Clients
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
             {clients.map((client, index) => (
               <motion.div
                 key={client.id}
@@ -68,13 +61,15 @@ const BlogPage = () => {
                 initial="initial"
                 whileInView="animate"
                 viewport={{ once: true }}
-                className="p-6 bg-[#f4f4f4] rounded-xl hover:shadow-xl hover:bg-white transition-all duration-300"
+                className="p-6 bg-[#f4f4f4] rounded-xl hover:shadow-xl hover:bg-white transition-all duration-300 relative"
               >
+                {/* Card Content */}
                 <div className="flex flex-col items-center text-center">
+                  {/* Profile Image */}
                   <img
                     src={client.image}
                     alt={client.name}
-                    className="w-24 h-24 rounded-full object-cover mb-4"
+                    className="w-24 h-24 rounded-full object-cover mb-4 -mt-12" // Image pulls outside the card with negative margin
                   />
                   <p className="text-gray-700 mb-2">{client.review}</p>
                   <p className="text-blue-600 font-semibold">{client.name}</p>
@@ -88,4 +83,4 @@ const BlogPage = () => {
   );
 };
 
-export default BlogPage;
+export default client;
